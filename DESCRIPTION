@@ -1,0 +1,26 @@
+Package: scINSIGHT2
+Type: Package
+Title: Integration of heterogeneous single-cell gene expression data including individual-level information
+Version: 0.1.0
+Authors@R: c(person(given = "Wei Vivian", family = "Li", role = c("aut"), email = "weil@ucr.edu"),    
+             person(given = "Yudi", family = "Mu", role = c("aut", "cre"), email = "ymu015@ucr.edu"))
+Maintainer: Yudi Mu  <ymu015@ucr.edu>
+Description: We proposed an integration method called scINSIGHT2, which takes an expression count matrix and individual-level covariates (such as age, gender, etc.) as inputs, and returns latent factors representing the integrated data for downstream analyses such as clustering. The novelty of our method lies in its ability to consider both continuous and discrete individual-level covariates.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+LazyDataCompression: xz
+LinkingTo: Rcpp, RcppArmadillo
+Imports: Rcpp, RANN, dplyr, stats, whitening, igraph, fastDummies, Seurat, rlist, stringr
+RoxygenNote: 7.3.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    aricode,
+    Rtsne,
+    RColorBrewer,
+    ggplot2,
+    devtools,
+    cowplot
+VignetteBuilder: knitr
+Depends: R (>= 3.5.0)
