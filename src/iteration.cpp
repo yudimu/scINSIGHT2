@@ -269,9 +269,9 @@ List iteration(arma::mat U, arma::mat V, arma::mat Y, arma::mat beta, arma::mat 
     likelihood(i) = accu(Y % eta_predicted - predicted) - trace(trans(U) * U) / 2 / pow(sigma, 2) - n * p * log(sigma);
     //
     //
-    if (i % 100 == 0) {
-      Rcpp::Rcout << "iteration " << i << ", PQL = " << l << std::endl;
-    }
+    //if (i % 100 == 0) {
+      //Rcpp::Rcout << "iteration " << i << ", PQL = " << l << std::endl;
+    //}
 
     if (i > 100) {
       if (sqrt(meansquaredU(i)) < tol1 && mean(meansquaredU.subvec(i - 100, i)) < tol2){
