@@ -73,18 +73,22 @@ scINSIGHT2_estimate = function(object,
     logs = log(libsize/median(libsize))
   }
 
-  #Find highly variable genes
-  data.list <- SplitObject(object, split.by = "orig.ident")
-  # normalize and identify variable features for each dataset independently
-  data.list <- lapply(X = data.list, FUN = function(x) {
-    x <- NormalizeData(x)
-    x <- FindVariableFeatures(x, selection.method = "vst", nfeatures = 2000)
-  })
+  if(!is.null(libsize)){
+    #Find highly variable genes
+    data.list <- SplitObject(object, split.by = "orig.ident")
+    # normalize and identify variable features for each dataset independently
+    data.list <- lapply(X = data.list, FUN = function(x) {
+      x <- NormalizeData(x)
+      x <- FindVariableFeatures(x, selection.method = "vst", nfeatures = 2000)
+    })
 
-  features_select <- SelectIntegrationFeatures(object.list = data.list, nfeatures = 2000)
+    features_select <- SelectIntegrationFeatures(object.list = data.list, nfeatures = 2000)
 
-  #Subset the original subject to only 2000 genes
-  Seurat_obj = subset(object, features = features_select)
+    #Subset the original subject to only 2000 genes
+    Seurat_obj = subset(object, features = features_select)
+  }else{
+    Seurat_obj = object
+  }
 
   #Input count matrix, covariates, individual index and log library size factor
   Y = t(as.matrix(Seurat_obj@assays$RNA$counts))
@@ -98,6 +102,7 @@ scINSIGHT2_estimate = function(object,
   ind = data.frame(ind=as.factor(individual))
   ind = dummy_cols(ind, select_columns = 'ind', remove_first_dummy = T)[,-1]
   X = cbind(X, ind)
+  X = cbind(matrix(1,nrow(X),1),X)
   X = as.matrix(X)
 
 
@@ -176,7 +181,7 @@ scINSIGHT2_estimate = function(object,
 
 
   #save final list
-  final$U = U_normalized
+  final$U_norm = U_normalized
   final$time = end_time - start_time
   final$clusters = final_clusters
   final$seed = seed_final
