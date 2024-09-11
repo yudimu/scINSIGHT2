@@ -14,7 +14,8 @@
 #' @importFrom RANN nn2
 #'
 #' @return Normalized U and clustering results.
-
+#'
+#' @export
 
 
 norm_clust_strict_weighted = function(U, Knn = 20){
