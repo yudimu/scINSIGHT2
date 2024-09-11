@@ -15,7 +15,7 @@ correct.uv = function(U, V, sigma){
   S = cov(U)
 
   if (ncol(U)==1){
-    return(list(u=U/sqrt(c(S)),v=V*sqrt(c(S))))
+    return(list(U=U/sqrt(c(S)),V=V*sqrt(c(S))))
   }
 
   # Make cov of U identity
