@@ -103,7 +103,6 @@ scINSIGHT2_estimate = function(object,
   ind = data.frame(ind=as.factor(individual))
   ind = dummy_cols(ind, select_columns = 'ind', remove_first_dummy = T)[,-1]
   X = cbind(X, ind)
-  X = cbind(matrix(1,nrow(X),1),X)
   X = as.matrix(X)
 
 
