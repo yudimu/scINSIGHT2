@@ -93,6 +93,7 @@ scINSIGHT2_estimate = function(object,
   #Input count matrix, covariates, individual index and log library size factor
   Y = t(as.matrix(Seurat_obj@assays$RNA$counts))
   X = Seurat_obj@meta.data
+  X = X[,!(colnames(X) %in% c("orig.ident", "nCount_RNA", "nFeature_RNA"))]
   individual = Seurat_obj@meta.data$orig.ident
 
   #number of candidate p
