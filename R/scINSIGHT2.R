@@ -73,7 +73,7 @@ scINSIGHT2_estimate = function(object,
     logs = log(libsize/median(libsize))
   }
 
-  if(!is.null(libsize)){
+  if(is.null(libsize)){
     #Find highly variable genes
     data.list <- SplitObject(object, split.by = "orig.ident")
     # normalize and identify variable features for each dataset independently
@@ -94,7 +94,7 @@ scINSIGHT2_estimate = function(object,
   Y = t(as.matrix(Seurat_obj@assays$RNA$counts))
   X = Seurat_obj@meta.data
   X = X[,!(colnames(X) %in% c("orig.ident", "nCount_RNA", "nFeature_RNA"))]
-  individual = Seurat_obj@meta.data$orig.ident
+  individual = Seurat_obj$orig.ident
 
   #number of candidate p
   n_p = length(p_candidate)
@@ -156,13 +156,7 @@ scINSIGHT2_estimate = function(object,
   #normalize U
   gllvm_u = final$U
 
-  # rownames(gllvm_u) = paste('cell', 1:nrow(gllvm_u), sep = "")
-  # colnames(gllvm_u) = paste('gene', 1:ncol(gllvm_u), sep = "")
-  #
-  # gllvm_cluster = FindNeighbors(gllvm_u, compute.SNN = T)
-  # gllvm_cluster = FindClusters(gllvm_cluster$snn)
-
-  new = data.frame(u = gllvm_u, individual = as.character(individual))
+  new = data.frame(u = gllvm_u, individual = individual)
   new1 = new %>% group_split(individual, .keep = F)
 
   U_new = list()
