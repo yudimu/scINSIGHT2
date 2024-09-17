@@ -38,13 +38,13 @@ estimation = function(Y,
   m = dim(Y)[2]
 
   # Add the intercept as a column of ones in X
-  X_new = cbind(matrix(1,n,1),X)
+  X = cbind(matrix(1,n,1),X)
 
 
   # X still may be NULL if no intercept and empty input X. Then d = 0
   d = 0
-  if (!is.null(X_new))
-    d = dim(X_new)[2]
+  if (!is.null(X))
+    d = dim(X)[2]
 
   # Initialization
   set.seed(seed)
@@ -69,11 +69,11 @@ estimation = function(Y,
   # throughout the computation, we will store them
   regpart = 0
   if (d)
-    regpart = X_new %*% beta
+    regpart = X %*% beta
   latentpart = multMat(U, t(V))
 
   #Run estimation using Rcpp
-  results = iteration(U, V,  Y, beta, X_new, alpha, sigma,
+  results = iteration(U, V,  Y, beta, X, alpha, sigma,
                       latentpart, regpart, logs, maxIter, d,
                       n, m, llast, tol1, tol2, p)
 
@@ -93,8 +93,8 @@ estimation = function(Y,
 
   #correction on U and V
   decomp = correct.uv(U, V, sigma)
-  U = decomp$U
-  V = decomp$V
+  U = decomp$u
+  V = decomp$v
 
   print(paste("Stopped after", i,"iterations"))
 

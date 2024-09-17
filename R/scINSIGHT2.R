@@ -99,7 +99,6 @@ scINSIGHT2_estimate = function(object,
   #number of candidate p
   n_p = length(p_candidate)
 
-
   ind = data.frame(ind=as.factor(individual))
   ind = dummy_cols(ind, select_columns = 'ind', remove_first_dummy = T)[,-1]
   X = cbind(X, ind)
@@ -119,9 +118,9 @@ scINSIGHT2_estimate = function(object,
 
     res = estimation(Y,
                      X,
-                     seed=seed,
                      logs=logs,
                      p=pair_list[[i]]$p,
+                     seed=seed,
                      maxIter=maxIter,
                      alpha=alpha,
                      tol1=tol1,

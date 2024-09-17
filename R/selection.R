@@ -93,29 +93,6 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
       p_final = p_candidate[min(index)]
     }
 
-    # if (p_candidate[1] == min(p_candidate)){
-    #   p_final = p_candidate[1]
-    # } else if (p_candidate[length(p_candidate)] == min(p_candidate)) {
-    #   p_final = p_candidate[length(p_candidate)]
-    # } else {
-    #   selected_numbers = numeric(0)
-    #   index = numeric(0)
-    #
-    #   # Loop to find local minima in entropy values
-    #   for (i in 2:(length(entropy) - 1)) {
-    #     if (entropy[i] < entropy[i - 1] && entropy[i] < entropy[i + 1]) {
-    #       selected_numbers = c(selected_numbers, entropy[i])
-    #       index = c(index, i)
-    #     }
-    #   }
-    #
-    #   if (length(selected_numbers) == 0) {
-    #     p_final = p_candidate[which.min(entropy)]
-    #   } else {
-    #     p_final = p_candidate[min(index)]
-    #   }
-    # }
-
   }
 
   # Select the best seed based on Frobenius norm difference
