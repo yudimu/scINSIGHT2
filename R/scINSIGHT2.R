@@ -62,8 +62,6 @@ scINSIGHT2_estimate = function(object,
   start_time = Sys.time()
 
   #input setting
-  Y = t(as.matrix(object@assays$RNA$counts))
-
   if (is.null(libsize)){
     #Calculate the log library size factor
     libsize_Y = rowSums(Y)

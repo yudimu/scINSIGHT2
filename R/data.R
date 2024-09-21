@@ -10,3 +10,7 @@
 
 #' A Seurat object containing count matrix and meta.data.
 "sim_object"
+
+
+#' Disease condition.
+"condition"

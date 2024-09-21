@@ -68,8 +68,7 @@ estimation = function(Y,
   # Since regression and latent predictions are used multiple times
   # throughout the computation, we will store them
   regpart = 0
-  if (d)
-    regpart = X %*% beta
+  regpart = X %*% beta
   latentpart = multMat(U, t(V))
 
   #Run estimation using Rcpp
