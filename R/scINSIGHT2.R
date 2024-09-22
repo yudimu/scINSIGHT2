@@ -94,9 +94,7 @@ scINSIGHT2_estimate = function(object,
   X = X[,!(colnames(X) %in% c("orig.ident", "nCount_RNA", "nFeature_RNA"))]
   individual = Seurat_obj$orig.ident
 
-  #number of candidate p
-  n_p = length(p_candidate)
-
+  #set dummy variables for individual
   ind = data.frame(ind=as.factor(individual))
   ind = dummy_cols(ind, select_columns = 'ind', remove_first_dummy = T)[,-1]
   X = cbind(X, ind)
@@ -136,14 +134,9 @@ scINSIGHT2_estimate = function(object,
 
   #select hyper-parameters
   n_cell = nrow(Y)
-  if (n_p == 1){
-    p_final = p_candidate
-    seed_final = 1
-  }else{
-    selected = selection(U_all = U_all, individual = individual, n_cell = n_cell, p_candidate = p_candidate, seeds = seeds)
-    p_final = selected$p_final
-    seed_final = selected$seed_final
-  }
+  selected = selection(U_all = U_all, individual = individual, n_cell = n_cell, p_candidate = p_candidate, seeds = seeds)
+  p_final = selected$p_final
+  seed_final = selected$seed_final
 
   print(paste0('The selected p is ', p_final, ' and the corresponding optimal seed is ', seed_final, '.'))
 
