@@ -99,9 +99,28 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
   if (length(seeds) == 1) {
     seed_final = seeds
   } else {
-    consmat_pfinal = consmat[[as.character(p_final)]]
-    connectivity = get(paste0('consmat_all_p', p_final))
-    frobenius_norm_difference = sapply(seeds, function(x) norm(connectivity[[x]] - consmat_pfinal, type = "F"))
+    consmat_pfinal = lapply(seeds, function(seed){
+      u_pick = get(paste0('gllvm_p', p_final, 'seed', seed))
+      print(paste0('gllvm_p', p_final, 'seed', seed))
+      new = data.frame(u_pick$U, individual = individual)
+      new1 = new %>% group_split(individual, .keep = F)
+      new = list()
+
+      for (i in 1:length(unique(individual))){
+        new[[i]] = unname(as.matrix(as.data.frame(new1[i][[1]])))
+      }
+
+      clust = norm_clust_strict_weighted(new)
+      assign = unlist(clust$clusters)
+      if(n_cell > 20000){
+        n_sample = min(2^16-1, floor(n_cell*0.2))
+        index = sample(1:n_cell, n_sample)
+        assign = assign[index]
+      }
+      return(clust2connect(assign)/n_res)
+    })
+    consmat = Reduce('+', consmat_pfinal)
+    frobenius_norm_difference = sapply(seeds, function(x)  norm(consmat_pfinal[[x]]-consmat,  type = "F"))
     seed_final = seeds[which.min(frobenius_norm_difference)]
   }
 
