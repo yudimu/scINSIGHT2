@@ -36,6 +36,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
       name = as.character(paste0(k, p_candidate[j]))
       pick = names(U_all)[grep(name, names(U_all))]
       u_pick = U_all[pick]
+
       new = data.frame(u_pick[[1]], individual = individual)
       new1 = new %>% group_split(individual, .keep = F)
       new = list()
@@ -100,9 +101,11 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
     seed_final = seeds
   } else {
     consmat_pfinal = lapply(seeds, function(seed){
-      u_pick = get(paste0('gllvm_p', p_final, 'seed', seed))
-      print(paste0('gllvm_p', p_final, 'seed', seed))
-      new = data.frame(u_pick$U, individual = individual)
+      name = as.character(paste0(k, p_final[j]))
+      pick = names(U_all)[grep(name, names(U_all))]
+      u_pick = U_all[pick]
+
+      new = data.frame(u_pick[[1]], individual = individual)
       new1 = new %>% group_split(individual, .keep = F)
       new = list()
 
@@ -112,6 +115,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
 
       clust = norm_clust_strict_weighted(new)
       assign = unlist(clust$clusters)
+
       if(n_cell > 20000){
         n_sample = min(2^16-1, floor(n_cell*0.2))
         index = sample(1:n_cell, n_sample)
@@ -119,7 +123,9 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
       }
       return(clust2connect(assign)/n_res)
     })
+
     consmat = Reduce('+', consmat_pfinal)
+
     frobenius_norm_difference = sapply(seeds, function(x)  norm(consmat_pfinal[[x]]-consmat,  type = "F"))
     seed_final = seeds[which.min(frobenius_norm_difference)]
   }
