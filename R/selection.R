@@ -100,7 +100,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
   if (length(seeds) == 1) {
     seed_final = seeds
   } else {
-    consmat_pfinal = lapply(seeds, function(seed){
+    consmat_pfinal = lapply(seeds, function(k){
       name = as.character(paste0(k, p_final[j]))
       pick = names(U_all)[grep(name, names(U_all))]
       u_pick = U_all[pick]
