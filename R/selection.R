@@ -96,6 +96,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
 
   }
 
+  consmat_test = list()
   # Select the best seed based on Frobenius norm difference
   if (length(seeds) == 1) {
     seed_final = seeds
@@ -124,9 +125,9 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
       return(clust2connect(assign)/n_res)
     })
 
-    consmat = Reduce('+', consmat_pfinal)
+    consmat_test = Reduce('+', consmat_pfinal)
 
-    frobenius_norm_difference = sapply(seeds, function(x)  norm(consmat_pfinal[[x]]-consmat,  type = "F"))
+    frobenius_norm_difference = sapply(seeds, function(x)  norm(consmat_pfinal[[x]]-consmat_test,  type = "F"))
     seed_final = seeds[which.min(frobenius_norm_difference)]
   }
 
