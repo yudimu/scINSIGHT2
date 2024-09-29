@@ -96,13 +96,13 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
 
   }
 
-  consmat_test = list()
+
   # Select the best seed based on Frobenius norm difference
   if (length(seeds) == 1) {
     seed_final = seeds
   } else {
     consmat_pfinal = lapply(seeds, function(k){
-      name = as.character(paste0(k, p_final[j]))
+      name = as.character(paste0(k, p_final))
       pick = names(U_all)[grep(name, names(U_all))]
       u_pick = U_all[pick]
 
