@@ -128,6 +128,8 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
     consmat_test = Reduce('+', consmat_pfinal)
 
     frobenius_norm_difference = sapply(seeds, function(x)  norm(consmat_pfinal[[x]]-consmat_test,  type = "F"))
+    print('frobenius_norm_difference:')
+    print(frobenius_norm_difference)
     seed_final = seeds[which.min(frobenius_norm_difference)]
   }
 
