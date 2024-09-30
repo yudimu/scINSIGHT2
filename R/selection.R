@@ -96,6 +96,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
 
   }
 
+  print(entropy)
 
   # Select the best seed based on Frobenius norm difference
   if (length(seeds) == 1) {
