@@ -13,6 +13,8 @@
 
 
 selection = function(U_all, individual, n_cell, p_candidate, seeds) {
+  print(table(individual))
+  print(seeds)
   # Initialize number of seeds
   n_res = length(seeds)
 
