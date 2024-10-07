@@ -84,6 +84,7 @@ norm_clust_strict_weighted = function(W2, Knn = 20, ...){
       }
     }
 
+
   }
   return(list(W2=W2, clusters = clusters))
 }
