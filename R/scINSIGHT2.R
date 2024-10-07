@@ -131,6 +131,7 @@ scINSIGHT2_estimate = function(object,
 
   #save U
   U_all = lapply(output_seed, function(df){ df[['U']]})
+  saveRDS(U_all, file = paste0(out.dir, '_U_all.rds'))
 
   #select hyper-parameters
   n_cell = nrow(Y)
