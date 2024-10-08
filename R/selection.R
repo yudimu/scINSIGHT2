@@ -65,7 +65,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
   }
 
   names(consmat) = p_candidate
-  saveRDS(consmat, paste0(out.dir, 'cosmat.rds'))
+  saveRDS(consmat, file = 'cosmat.rds')
 
 
   entropy = c()
