@@ -135,6 +135,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
 
 
     consmat_test = Reduce('+', consmat_pfinal)
+    saveRDS(consmat_test, 'consmat_test.rds')
 
     frobenius_norm_difference = sapply(seeds, function(x)  norm(consmat_pfinal[[x]]-consmat_test,  type = "F"))
     print('frobenius_norm_difference:')
