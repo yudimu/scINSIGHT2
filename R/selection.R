@@ -13,8 +13,10 @@
 
 
 selection = function(U_all, individual, n_cell, p_candidate, seeds) {
+  set.seed(1)
   print(table(individual))
   print(seeds)
+  print(n_cell)
   # Initialize number of seeds
   n_res = length(seeds)
 
@@ -102,6 +104,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
 
   print(entropy)
 
+
   # Select the best seed based on Frobenius norm difference
   if (length(seeds) == 1) {
     seed_final = seeds
@@ -138,6 +141,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
     print(frobenius_norm_difference)
     seed_final = seeds[which.min(frobenius_norm_difference)]
   }
+
 
   return(list(p_final = p_final, seed_final = seed_final))
 }
