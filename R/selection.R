@@ -14,9 +14,7 @@
 
 selection = function(U_all, individual, n_cell, p_candidate, seeds) {
   set.seed(1)
-  print(table(individual))
-  print(seeds)
-  print(n_cell)
+
   # Initialize number of seeds
   n_res = length(seeds)
 
@@ -38,8 +36,8 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
     # Generate connectivity matrices for each seed
     consmat_all = lapply(seeds, function(k) {
       name = as.character(paste0(k, p_candidate[j]))
-      pick = names(U_all)[grep(name, names(U_all))]
-      u_pick = U_all[pick]
+      pick1 = names(U_all)[grep(name, names(U_all))]
+      u_pick = U_all[pick1]
 
       new = data.frame(u_pick[[1]], individual = individual)
       new1 = new %>% group_split(individual, .keep = F)
@@ -50,6 +48,7 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
       }
 
       clust = norm_clust_strict_weighted(new)
+      saveRDS(clust, file = paste0('k=', k, '_clust.rds'))
       assign = unlist(clust$clusters)
 
       if (n_cell > 20000) {
@@ -59,11 +58,12 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
       }
 
       return(clust2connect(assign) / n_res)
+
     })
 
     names(consmat_all) = seeds
     assign(paste0('consmat_all_p', p_candidate[j]), consmat_all)
-    consmat[[j]] = Reduce('+', consmat_all)
+    consmat[[j]] = base::Reduce('+', consmat_all)
   }
 
   names(consmat) = p_candidate
@@ -135,12 +135,8 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
 
 
     consmat_test = Reduce('+', consmat_pfinal)
-    saveRDS(consmat_pfinal, 'consmat_pfinal.rds')
-    saveRDS(consmat_test, 'consmat_test.rds')
 
     frobenius_norm_difference = sapply(seeds, function(x)  norm(consmat_pfinal[[x]]-consmat_test,  type = "F"))
-    print('frobenius_norm_difference:')
-    print(frobenius_norm_difference)
     seed_final = seeds[which.min(frobenius_norm_difference)]
   }
 
