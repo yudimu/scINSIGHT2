@@ -111,8 +111,8 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
   } else {
     consmat_pfinal = lapply(seeds, function(k){
       name = as.character(paste0(k, p_final))
-      pick = names(U_all)[grep(name, names(U_all))]
-      u_pick = U_all[pick]
+      pick1 = names(U_all)[grep(name, names(U_all))]
+      u_pick = U_all[pick1]
 
       new = data.frame(u_pick[[1]], individual = individual)
       new1 = new %>% group_split(individual, .keep = F)
