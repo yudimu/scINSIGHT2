@@ -18,6 +18,7 @@
 
 
 norm_clust_strict_weighted = function(W2, Knn = 20, ...){
+  set.seed(1)
   ### cosine normalization
   W2norm = lapply(W2, function(x){
     l2 = sqrt(rowSums(x^2))
