@@ -11,7 +11,7 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 LinkingTo: Rcpp, RcppArmadillo
-Imports: Rcpp, RANN, dplyr, stats, whitening, igraph, fastDummies, Seurat, rlist, stringr
+Imports: Rcpp, RANN, dplyr, stats, whitening, igraph (== 1.5.1), fastDummies, Seurat, rlist, stringr
 RoxygenNote: 7.3.1
 Suggests: 
     knitr,
