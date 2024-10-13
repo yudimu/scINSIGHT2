@@ -48,7 +48,6 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
       }
 
       clust = norm_clust_strict_weighted(new)
-      saveRDS(clust, file = paste0('k=', k, '_clust.rds'))
       assign = unlist(clust$clusters)
 
       if (n_cell > 20000) {
@@ -67,7 +66,6 @@ selection = function(U_all, individual, n_cell, p_candidate, seeds) {
   }
 
   names(consmat) = p_candidate
-  saveRDS(consmat, file = 'cosmat.rds')
 
 
   entropy = c()
