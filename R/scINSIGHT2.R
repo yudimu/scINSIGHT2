@@ -131,11 +131,11 @@ scINSIGHT2_estimate = function(object,
 
   #save U
   U_all = lapply(output_seed, function(df){ df[['U']]})
-  saveRDS(U_all, file = paste0(out.dir, '_U_all.rds'))
+  saveRDS(U_all, file = paste0(out.dir, 'U_all.rds'))
 
   #select hyper-parameters
   n_cell = nrow(Y)
-  selected = selection(U_all = U_all, individual = individual, n_cell = n_cell, p_candidate = p_candidate, seeds = seeds)
+  selected = selection(U_all = U_all, individual = Seurat_obj$orig.ident, n_cell = n_cell, p_candidate = p_candidate, seeds = seeds)
   p_final = selected$p_final
   seed_final = selected$seed_final
 
@@ -158,7 +158,7 @@ scINSIGHT2_estimate = function(object,
 
   #normalization on U and clustering
   norm_clust = norm_clust_strict_weighted(U_new)
-  U_normalized = list.rbind(norm_clust$U)
+  U_normalized = list.rbind(norm_clust$W2)
   final_clusters = norm_clust$clusters
 
   #end time
@@ -167,7 +167,7 @@ scINSIGHT2_estimate = function(object,
 
   #save final list
   final$U_norm = U_normalized
-  final$time = end_time - start_time
+  final$total_time = end_time - start_time
   final$clusters = final_clusters
   final$seed = seed_final
   final = final[!names(final) %in% c("beta", "likelihood")]
