@@ -1,8 +1,8 @@
 # scINSIGHT2
-Integration of heterogeneous single-cell gene expression data including individual-level information
+Harmonizing heterogeneous single-cell gene expression data with individual-level covariate information
 
 ## Introduction
-We proposed an integration method called scINSIGHT2, which takes an expression count matrix and individual-level covariates (such as age, gender, etc.) as inputs, and returns latent factors representing the integrated data for downstream analyses such as clustering. The novelty of our method lies in its ability to consider both continuous and discrete individual-level covariates.
+We introduce scINSIGHT2, a new integration model designed to harmonize gene expression data from multiple single-cell samples by incorporating both discrete and continuous individual-level covariates. Utilizing a generalized linear latent variable model, scINSIGHT2 adjusts for covariate-associated gene expression changes prior to estimating cell embeddings within a unified low-dimensional space of inferred metagenes. 
 
 ## Installation
 `scINSIGHT2` is currently available on GitHub. To download and load package please follow:
@@ -11,6 +11,7 @@ We proposed an integration method called scINSIGHT2, which takes an expression c
 devtools::install_github("https://github.com/yudimu/scINSIGHT2")
 library(scINSIGHT2)
 ```
+Please see the Wiki page for a detailed tutorial on how to use this package.
 
 ## Issues and communications
 
