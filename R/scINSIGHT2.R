@@ -92,9 +92,10 @@ scINSIGHT2_estimate = function(object,
   Y = t(as.matrix(Seurat_obj@assays$RNA$counts))
   X = Seurat_obj@meta.data
   X = X[,!(colnames(X) %in% c("orig.ident", "nCount_RNA", "nFeature_RNA"))]
-  individual = Seurat_obj$orig.ident
+
 
   #set dummy variables for individual
+  individual = Seurat_obj$orig.ident
   ind = data.frame(ind=as.factor(individual))
   ind = dummy_cols(ind, select_columns = 'ind', remove_first_dummy = T)[,-1]
   X = cbind(X, ind)
