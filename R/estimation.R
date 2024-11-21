@@ -18,6 +18,10 @@
 #' @importFrom stats rnorm
 #'
 #' @return A list of estimates.
+#'
+#' #' @references
+#' Kidzinski, L., Hui, F.K., Warton, D.I. and Hastie, T.J., 2022. Generalized Matrix Factorization: efficient algorithms for fitting generalized linear latent variable models to large data arrays.
+#' Journal of Machine Learning Research, 23(291), pp.1-29.
 
 
 
