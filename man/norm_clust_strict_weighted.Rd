@@ -4,12 +4,14 @@
 \alias{norm_clust_strict_weighted}
 \title{Normalize latent factors and clustering}
 \usage{
-norm_clust_strict_weighted(U, Knn = 20)
+norm_clust_strict_weighted(W2, Knn = 20, ...)
 }
 \arguments{
-\item{U}{Latent factors U before normalization.}
-
 \item{Knn}{The maximum number of nearest neighbors to search (default 20).}
+
+\item{...}{Additional parameters passed to internal functions.}
+
+\item{U}{Latent factors U before normalization.}
 }
 \value{
 Normalized U and clustering results.

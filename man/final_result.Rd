@@ -5,7 +5,7 @@
 \alias{final_result}
 \title{Final results from scINSIGHT2}
 \format{
-An object of class \code{list} of length 6.
+An object of class \code{list} of length 9.
 }
 \usage{
 final_result
