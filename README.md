@@ -11,7 +11,7 @@ We introduce scINSIGHT2, a new integration model designed to harmonize gene expr
 devtools::install_github("https://github.com/yudimu/scINSIGHT2")
 library(scINSIGHT2)
 ```
-Please see the Wiki page for a detailed tutorial on how to use this package.
+Please see the Wiki page for a detailed [tutorial](https://github.com/yudimu/scINSIGHT2/wiki/scINSIGHT2-vignette) on how to use this package.
 
 ## Issues and communications
 
