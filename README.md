@@ -13,6 +13,9 @@ library(scINSIGHT2)
 ```
 Please see the Wiki page for a detailed [tutorial](https://github.com/yudimu/scINSIGHT2/wiki/scINSIGHT2-vignette) on how to use this package.
 
+Platform and 
+
+
 ## Issues and communications
 
 If you have any issues using this package, please post them
