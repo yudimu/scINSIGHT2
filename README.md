@@ -11,10 +11,11 @@ We introduce scINSIGHT2, a new integration model designed to harmonize gene expr
 devtools::install_github("https://github.com/yudimu/scINSIGHT2")
 library(scINSIGHT2)
 ```
+
+On the local machine, the installation was tested under macOS 15.4.1 with R version 4.2.1, running on a 64-bit x86_64-apple-darwin17.0 platform. For the HPC environment, we used Rocky Linux 8.8 (Green Obsidian) with R version 4.4.2 on a 64-bit x86_64-pc-linux-gnu platform. 
+
+## Tutorial
 Please see the Wiki page for a detailed [tutorial](https://github.com/yudimu/scINSIGHT2/wiki/scINSIGHT2-vignette) on how to use this package.
-
-Platform and 
-
 
 ## Issues and communications
 
